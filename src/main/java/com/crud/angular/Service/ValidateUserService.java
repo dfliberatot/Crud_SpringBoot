@@ -2,6 +2,8 @@ package com.crud.angular.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.crud.angular.Model.usuario;
 import com.crud.angular.Repository.usuarioRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +14,7 @@ public class ValidateUserService implements IValidateUserService{
 	
 	@Autowired
 	private usuarioRepository usuarioRepository;
+	
 
 	@Override
 	public Integer validateUser(Integer id, String password) {
@@ -25,6 +28,12 @@ public class ValidateUserService implements IValidateUserService{
 			//log.error("Usuario o contraseña incorrecta" + e.getMessage());
 		}
 		return validate;
+	}
+
+	@Override
+	public Boolean registerUser(usuario user) {
+		usuarioRepository.save(user);
+		return true;
 	}
 	
 
